@@ -1,0 +1,30 @@
+# 민감한 정보
+.credentials.json
+.credentials.json.backup
+config.json
+
+# 캐시 및 임시 파일
+cache/
+debug/
+session-env/
+shell-snapshots/
+todos/
+file-history/
+telemetry/
+statsig/
+stats-cache.json
+history.jsonl
+
+# 프로젝트별 설정 (개인 정보 포함 가능)
+projects/
+
+# IDE 설정
+.claude/
+ide/
+
+# 플랜 파일
+plans/
+
+# 외부 플러그인 마켓플레이스 (서브모듈)
+plugins/marketplaces/anthropic-agent-skills/
+plugins/marketplaces/claude-plugins-official/

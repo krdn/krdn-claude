@@ -1,0 +1,23 @@
+{
+  "env": {
+    "WORK_ENVIRONMENT": "remote",
+    "WORK_CONTEXT": "모든 작업은 원격 연결을 통해 수행되며, 이를 판단 기준으로 사용합니다"
+  },
+  "permissions": {
+    "allow": [
+      "mcp__tavily"
+    ],
+    "deny": []
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/gon/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "feature-dev@claude-code-plugins": true,
+    "frontend-design@claude-code-plugins": true,
+    "example-skills@anthropic-agent-skills": true,
+    "hookify@claude-code-plugins": true
+  },
+  "alwaysThinkingEnabled": true
+}

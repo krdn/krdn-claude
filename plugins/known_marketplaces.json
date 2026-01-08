@@ -1,0 +1,26 @@
+{
+  "claude-code-plugins": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-code"
+    },
+    "installLocation": "/home/gon/.claude/plugins/marketplaces/claude-code-plugins",
+    "lastUpdated": "2026-01-04T07:22:57.727Z"
+  },
+  "anthropic-agent-skills": {
+    "source": {
+      "source": "git",
+      "url": "https://github.com/anthropics/skills.git"
+    },
+    "installLocation": "/home/gon/.claude/plugins/marketplaces/anthropic-agent-skills",
+    "lastUpdated": "2025-12-12T03:11:38.540Z"
+  },
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/home/gon/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-01-08T02:44:54.355Z"
+  }
+}

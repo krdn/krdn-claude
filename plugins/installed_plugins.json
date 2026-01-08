@@ -1,0 +1,48 @@
+{
+  "version": 2,
+  "plugins": {
+    "feature-dev@claude-code-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/home/gon/.claude/plugins/cache/claude-code-plugins/feature-dev/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2025-12-12T12:57:37.646Z",
+        "lastUpdated": "2025-12-12T12:57:37.646Z",
+        "gitCommitSha": "2192c86c208b39aa262ada534d89f72f65708a8e",
+        "isLocal": true
+      }
+    ],
+    "frontend-design@claude-code-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/home/gon/.claude/plugins/cache/claude-code-plugins/frontend-design/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2025-12-12T12:57:37.646Z",
+        "lastUpdated": "2025-12-12T12:57:37.646Z",
+        "gitCommitSha": "2192c86c208b39aa262ada534d89f72f65708a8e",
+        "isLocal": true
+      }
+    ],
+    "example-skills@anthropic-agent-skills": [
+      {
+        "scope": "user",
+        "installPath": "/home/gon/.claude/plugins/cache/anthropic-agent-skills/example-skills/00756142ab04",
+        "version": "00756142ab04",
+        "installedAt": "2025-12-12T12:57:37.646Z",
+        "lastUpdated": "2025-12-12T12:57:37.646Z",
+        "gitCommitSha": "00756142ab04c82a447693cf373c4e0c554d1005",
+        "isLocal": true
+      }
+    ],
+    "hookify@claude-code-plugins": [
+      {
+        "scope": "user",
+        "installPath": "/home/gon/.claude/plugins/cache/claude-code-plugins/hookify/0.1.0",
+        "version": "0.1.0",
+        "installedAt": "2026-01-04T00:24:06.908Z",
+        "lastUpdated": "2026-01-04T00:24:06.908Z",
+        "isLocal": true
+      }
+    ]
+  }
+}
