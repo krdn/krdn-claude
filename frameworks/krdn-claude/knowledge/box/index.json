@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "last_updated": "2026-01-09T12:00:00Z",
+  "last_updated": "2026-01-09T17:00:00Z",
   "description": "지식 저장소 크로스 참조 인덱스. 모든 엔티티 간 관계를 빠르게 조회.",
   "structure": {
     "box": {
@@ -104,6 +104,6 @@
     "orphan_learnings": 1,
     "projects_with_knowledge": 5
   },
-  "related_agents": ["orchestrator", "ai-manager", "n8n-manager", "web-manager"],
-  "related_skills": ["context-manager", "auto-doc", "deploy-manager", "system-check"]
+  "related_agents": ["orchestrator", "monitor", "code-reviewer", "ai-manager", "n8n-manager", "web-manager"],
+  "related_skills": ["auto-doc", "context-manager", "deploy-manager", "notify-important", "port-manager", "prompt-assistant", "system-check"]
 }

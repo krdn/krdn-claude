@@ -1,6 +1,6 @@
 # krdn-claude Framework
 
-> **버전**: 2.1.0
+> **버전**: 2.3.0
 > **CLI 호환**: Claude Code 2.1.x
 > **별칭**: 크든클로드, 프레임워크, 오케스트레이터
 
@@ -9,17 +9,17 @@
 krdn-claude는 여러 개발 프로젝트(AI, N8N, Web)를 **트리 구조 에이전트 시스템**으로 통합 관리하는 프레임워크입니다.
 
 ```
-                [Orchestrator]
-                      │
-        ┌─────────────┼─────────────┐
-        ▼             ▼             ▼
-   [AI Manager] [N8N Manager] [Web Manager]
-        │             │             │
-    ┌───┴───┐    ┌───┴───┐    ┌───┴───┐
-    ▼       ▼    ▼       ▼    ▼       ▼
- claude-  ai-   docker- news- home  home-
- code-   note   n8n    senti-       krdn
- auto    taking       ment
+                    [Orchestrator]
+                          │
+          ┌───────────────┼───────────────┐
+          ▼               ▼               ▼
+     [AI Manager]   [N8N Manager]   [Web Manager]
+          │               │               │
+    ┌─────┼─────┐    ┌────┴────┐    ┌────┴────┐
+    ▼     ▼     ▼    ▼         ▼    ▼         ▼
+claude- ai-  gonsai2 docker-  news- home    home-
+code-  note         n8n     senti-         krdn
+auto   taking              ment
 ```
 
 ## 설치
@@ -55,14 +55,13 @@ krdn-claude는 여러 개발 프로젝트(AI, N8N, Web)를 **트리 구조 에�
 
 | 스킬 | 명령어 | 설명 |
 |------|--------|------|
-| auto-doc | `/doc` | 자동 문서화 |
+| auto-doc | `/doc` | 자동 문서화, PR 생성, 대시보드 |
 | context-manager | `/context` | 세션 컨텍스트 관리 |
-| deploy-manager | `/deploy` | 프로젝트 배포 |
-| interview | `/interview` | 인터뷰 방식 요구사항 수집 |
+| deploy-manager | `/deploy` | 프로젝트 배포, 롤백, 헬스체크 |
 | notify-important | `/notify-important` | 중요 알림 발송 |
 | port-manager | `/port` | 개발 포트 관리 |
-| prompt-assistant | `/prompt` | 프롬프트 분석 |
-| system-check | `/system-check` | 시스템 점검 |
+| prompt-assistant | `/prompt` | 프롬프트 분석, 인터뷰 |
+| system-check | `/system-check` | 시스템 점검, 자동 복구 |
 
 ### 지식 저장소 (knowledge/)
 

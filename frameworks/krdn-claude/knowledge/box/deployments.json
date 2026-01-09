@@ -10,7 +10,7 @@
   },
   "schema": {
     "deployment": {
-      "id": "deploy-{timestamp}",
+      "id": "deploy-{YYYYMMDD}-{NNN}",
       "project": "project-name",
       "environment": "dev|staging|prod",
       "version": "version-string",
