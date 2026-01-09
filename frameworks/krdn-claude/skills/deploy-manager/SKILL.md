@@ -46,13 +46,15 @@ allowed-tools:
 
 ### 환경 설정 파일
 ```
-~/.claude/skills/deploy-manager/
+~/.claude/frameworks/krdn-claude/skills/deploy-manager/
 ├── SKILL.md
 ├── config/
-│   └── environments.json    # 환경별 설정
+│   ├── environments.json    # 환경별 설정
+│   └── auto-deploy.json     # 자동 배포 트리거 설정
 └── scripts/
-    ├── deploy.sh           # 배포 스크립트
-    └── rollback.sh         # 롤백 스크립트
+    ├── deploy.sh            # 배포 스크립트
+    ├── rollback.sh          # 롤백 스크립트
+    └── healthcheck.sh       # 헬스체크 스크립트
 ```
 
 ## 배포 프로세스

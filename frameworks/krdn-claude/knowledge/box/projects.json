@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-01-08",
+  "last_updated": "2026-01-09",
   "domains": {
     "ai": {
       "name": "AI Projects",
@@ -36,21 +36,6 @@
             "test": "npm test"
           },
           "status": "active",
-          "priority": "medium"
-        },
-        {
-          "name": "gonsai2",
-          "path": "/data/home-data/projects/n8n/gonsai2",
-          "type": "express",
-          "description": "n8n 워크플로우 + MongoDB + 웹소켓 통합",
-          "tech_stack": ["Express", "MongoDB", "Socket.IO", "Redis"],
-          "commands": {
-            "install": "npm install",
-            "dev": "npm run dev",
-            "build": "npm run build",
-            "test": "npm test"
-          },
-          "status": "development",
           "priority": "medium"
         }
       ]
@@ -92,6 +77,21 @@
           "status": "production",
           "priority": "high",
           "url": "https://news.krdn.kr"
+        },
+        {
+          "name": "gonsai2",
+          "path": "/data/home-data/projects/n8n/gonsai2",
+          "type": "express",
+          "description": "n8n 워크플로우 + MongoDB + 웹소켓 통합",
+          "tech_stack": ["Express", "MongoDB", "Socket.IO", "Redis"],
+          "commands": {
+            "install": "npm install",
+            "dev": "npm run dev",
+            "build": "npm run build",
+            "test": "npm test"
+          },
+          "status": "development",
+          "priority": "medium"
         }
       ]
     },

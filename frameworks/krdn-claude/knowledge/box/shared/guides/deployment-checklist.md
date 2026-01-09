@@ -50,7 +50,7 @@
 /deploy rollback [project]
 
 # 스크립트 직접 실행
-~/.claude/skills/deploy-manager/scripts/rollback.sh [project]
+~/.claude/frameworks/krdn-claude/skills/deploy-manager/scripts/rollback.sh [project]
 ```
 
 ## 관련 문서

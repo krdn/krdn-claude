@@ -15,11 +15,11 @@ krdn-claude는 여러 개발 프로젝트(AI, N8N, Web)를 **트리 구조 에�
           ▼               ▼               ▼
      [AI Manager]   [N8N Manager]   [Web Manager]
           │               │               │
-    ┌─────┼─────┐    ┌────┴────┐    ┌────┴────┐
-    ▼     ▼     ▼    ▼         ▼    ▼         ▼
-claude- ai-  gonsai2 docker-  news- home    home-
-code-  note         n8n     senti-         krdn
-auto   taking              ment
+     ┌────┴────┐    ┌─────┼─────┐    ┌────┴────┐
+     ▼         ▼    ▼     ▼     ▼    ▼         ▼
+  claude-    ai-  docker- news- gonsai2 home  home-
+  code-     note  n8n    senti-              krdn
+  auto     taking       ment
 ```
 
 ## 설치
