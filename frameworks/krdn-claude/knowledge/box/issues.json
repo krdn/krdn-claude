@@ -1,7 +1,121 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-01-09T19:00:00Z",
+  "last_updated": "2026-01-09T23:30:00Z",
   "issues": [
+    {
+      "id": "issue-20260109-003",
+      "title": "krdn-claude 프레임워크 심층 분석 - 문제점 및 개선 제안",
+      "created_at": "2026-01-09T23:30:00Z",
+      "status": "open",
+      "priority": "high",
+      "type": "analysis",
+      "description": "krdn-claude 프레임워크의 심층 분석을 통해 발견된 문제점들과 개선 제안 사항을 정리.",
+      "request_prompt": "krdn-claude 프레임워크 상세하게 분석해줘. 문제점이 있는지 분석하고, 추가할 기능이 필요한지도 분석해줘",
+      "critical_issues": [
+        {
+          "id": "CRIT-001",
+          "title": "gonsai2 도메인 불일치 (재발견)",
+          "severity": "critical",
+          "description": "projects.json에서는 N8N 도메인, ai-manager.md에서는 AI 도메인에 포함",
+          "impact": "오케스트레이터가 잘못된 에이전트를 호출할 수 있음",
+          "recommendation": "ai-manager.md에서 gonsai2 제거 또는 projects.json 수정"
+        },
+        {
+          "id": "CRIT-002",
+          "title": "system-check scripts 디렉토리 누락",
+          "severity": "critical",
+          "description": "SKILL.md에서 scripts/quick-check.sh, security-check.sh를 참조하지만 실제 파일 없음",
+          "impact": "cron 자동화 설정 불가, 정기 점검 실행 불가",
+          "recommendation": "scripts 디렉토리 및 스크립트 파일 생성"
+        },
+        {
+          "id": "CRIT-003",
+          "title": "지식 저장소 미활용",
+          "severity": "critical",
+          "description": "deployments.json (0개), incidents.json (0개), contexts/ (빈 디렉토리)",
+          "impact": "지식 축적 안됨, 회고/분석 불가, 패턴 학습 불가",
+          "recommendation": "배포/인시던트 발생 시 자동 기록 트리거 구현"
+        }
+      ],
+      "warning_issues": [
+        {
+          "id": "WARN-001",
+          "title": "자동화 인프라 미구현",
+          "severity": "warning",
+          "description": "cron 설정이 문서화되어 있지만 실행할 스크립트가 없음",
+          "recommendation": "실제 스크립트 생성 후 cron 설정"
+        },
+        {
+          "id": "WARN-002",
+          "title": "알림 채널 제한",
+          "severity": "warning",
+          "description": "Email만 구현됨, Telegram/Slack 미구현",
+          "recommendation": "Telegram 봇 연동 구현"
+        },
+        {
+          "id": "WARN-003",
+          "title": "개발 포트 충돌",
+          "severity": "warning",
+          "description": "ai-note-taking과 home 모두 dev 포트 3000 사용",
+          "recommendation": "environments.json에서 포트 분리"
+        },
+        {
+          "id": "WARN-004",
+          "title": "배포 스크립트 검증 부재",
+          "severity": "warning",
+          "description": "deploy.sh, rollback.sh 존재하지만 테스트/검증 메커니즘 없음",
+          "recommendation": "dry-run 옵션 및 테스트 스크립트 추가"
+        }
+      ],
+      "enhancement_suggestions": {
+        "new_skills": [
+          {
+            "name": "dependency-manager",
+            "commands": ["/deps check", "/deps update", "/deps outdated"],
+            "description": "의존성 보안 취약점 검사, 업데이트, 오래된 패키지 목록"
+          },
+          {
+            "name": "version-manager",
+            "commands": ["/version bump", "/version changelog", "/version tag"],
+            "description": "시맨틱 버전 관리, CHANGELOG 자동 생성, Git 태그"
+          },
+          {
+            "name": "backup-manager",
+            "commands": ["/backup verify", "/backup restore", "/backup list"],
+            "description": "백업 검증, 복원, 목록 조회"
+          },
+          {
+            "name": "dashboard",
+            "commands": ["/dashboard", "/dashboard deployments", "/dashboard incidents"],
+            "description": "전체 프로젝트 상태, 배포 현황, 인시던트 통계"
+          }
+        ],
+        "new_features": [
+          {
+            "name": "/framework validate",
+            "description": "projects.json과 에이전트 파일 일치 검증, 포트 충돌 검사, 경로 존재 여부 확인"
+          },
+          {
+            "name": "자동 기록 트리거",
+            "description": "배포 완료 → deployments.json, 에러 발생 → incidents.json 자동 추가"
+          },
+          {
+            "name": "GitHub Actions 연동",
+            "description": "CI/CD 파이프라인 상태를 프레임워크에서 통합 조회"
+          }
+        ]
+      },
+      "action_items": [
+        {"priority": 1, "action": "gonsai2 도메인 정리", "difficulty": "easy", "time": "10min"},
+        {"priority": 2, "action": "system-check scripts 생성", "difficulty": "medium", "time": "1h"},
+        {"priority": 3, "action": "기존 배포 이력 deployments.json 추가", "difficulty": "easy", "time": "30min"},
+        {"priority": 4, "action": "개발 포트 충돌 해결", "difficulty": "easy", "time": "15min"},
+        {"priority": 5, "action": "/framework validate 명령 추가", "difficulty": "medium", "time": "2h"},
+        {"priority": 6, "action": "Telegram 알림 구현", "difficulty": "medium", "time": "2h"},
+        {"priority": 7, "action": "dependency-manager 스킬 추가", "difficulty": "hard", "time": "4h"}
+      ],
+      "tags": ["analysis", "improvement", "technical-debt", "roadmap"]
+    },
     {
       "id": "issue-20260109-002",
       "title": "krdn-claude 프레임워크 리팩토링 검사 및 수정",
@@ -135,10 +249,10 @@
     }
   ],
   "statistics": {
-    "total": 2,
+    "total": 3,
     "by_status": {
       "completed": 2,
-      "open": 0,
+      "open": 1,
       "in_progress": 0
     }
   }
