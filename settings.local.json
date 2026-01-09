@@ -5,7 +5,6 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:ollama.com)",
       "WebFetch(domain:news.krdn.kr)",
-
       "Bash(ls *)",
       "Bash(cat *)",
       "Bash(grep *)",
@@ -28,7 +27,6 @@
       "Bash(bash *)",
       "Bash(sh)",
       "Bash(tty *)",
-
       "Bash(curl *)",
       "Bash(nc *)",
       "Bash(ssh *)",
@@ -44,7 +42,6 @@
       "Bash(rfkill *)",
       "Bash(nmcli *)",
       "Bash(resolvectl *)",
-
       "Bash(apt *)",
       "Bash(apt-get *)",
       "Bash(apt-cache *)",
@@ -56,20 +53,16 @@
       "Bash(npx *)",
       "Bash(nvm *)",
       "Bash(node *)",
-
       "Bash(git *)",
       "Bash(gh *)",
-
       "Bash(docker *)",
       "Bash(docker-compose *)",
-
       "Bash(systemctl *)",
       "Bash(journalctl *)",
       "Bash(dmesg *)",
       "Bash(loginctl *)",
       "Bash(timedatectl *)",
       "Bash(hostnamectl *)",
-
       "Bash(ps *)",
       "Bash(top *)",
       "Bash(htop *)",
@@ -81,7 +74,6 @@
       "Bash(free *)",
       "Bash(lsof *)",
       "Bash(smem *)",
-
       "Bash(lsblk *)",
       "Bash(blkid *)",
       "Bash(lsusb *)",
@@ -92,16 +84,13 @@
       "Bash(nvidia-smi *)",
       "Bash(sfdisk *)",
       "Bash(swapon *)",
-
       "Bash(ollama *)",
       "Bash(timeout * ollama *)",
-
       "Bash(jq *)",
       "Bash(pandoc *)",
       "Bash(pdfinfo *)",
       "Bash(msmtp *)",
       "Bash(crontab *)",
-
       "Bash(getent *)",
       "Bash(chfn *)",
       "Bash(finger *)",
@@ -113,7 +102,6 @@
       "Bash(prime-select *)",
       "Bash(nvcc *)",
       "Bash(ubuntu-drivers *)",
-
       "Bash(gsettings *)",
       "Bash(dconf *)",
       "Bash(xset *)",
@@ -127,45 +115,51 @@
       "Bash(fcitx5-diagnose *)",
       "Bash(aplay *)",
       "Bash(update-desktop-database *)",
-
       "Bash(python3 *)",
       "Bash(/data/vllm-env/bin/pip *)",
       "Bash(/data/vllm-env/bin/python *)",
       "Bash(HF_HOME=* /data/vllm-env/bin/python *)",
       "Bash(~/telegram-bot-venv/bin/pip *)",
-
       "Bash(~/.lmstudio/bin/lms *)",
       "Bash(~/Applications/squashfs-root/resources/bin/lms *)",
       "Bash(lms *)",
       "Bash(./LM-Studio.AppImage *)",
-
       "Bash(thefuck *)",
       "Bash(~/.local/bin/thefuck *)",
       "Bash(~/.local/bin/md2pdf *)",
       "Bash(~/.local/share/thefuck-venv/bin/pip *)",
       "Bash(/home/gon/scripts/*)",
-
       "Bash(claude mcp *)",
       "Bash(nginx *)",
-
       "Bash(timeout *)",
-
       "Bash(PGPASSWORD=* psql *)",
-
       "Bash(sudo *)",
-
       "Bash(export *)",
       "Bash([ *)",
-
       "Skill(system-check)",
       "Skill(prompt-assistant)",
-
       "mcp__serena__*",
       "mcp__playwright__*",
-      "mcp__chrome-devtools__*"
+      "mcp__chrome-devtools__*",
+      "Bash(bunx oh-my-opencode:*)",
+      "Bash(bash)",
+      "Bash(~/.bun/bin/bunx oh-my-opencode install:*)",
+      "Bash(PATH=\"$HOME/.bun/bin:$PATH\" echo:*)",
+      "Bash(PATH=\"$HOME/.bun/bin:$PATH\" ~/.bun/bin/bun x oh-my-opencode install:*)",
+      "WebFetch(domain:opencode.ai)",
+      "Bash(~/.bun/bin/bun x oh-my-opencode:*)",
+      "Bash(/bin/bash -c 'export PATH=\"\"$HOME/.opencode/bin:$HOME/.bun/bin:$PATH\"\" && echo \"\"y\"\" | $HOME/.bun/bin/bun x oh-my-opencode install')",
+      "Bash(/bin/bash -c 'export PATH=\"\"$HOME/.opencode/bin:$HOME/.bun/bin:$PATH\"\" && printf \"\"y\\\\n\"\" | $HOME/.bun/bin/bun x oh-my-opencode install')",
+      "Bash(/bin/bash -c 'export PATH=\"\"$HOME/.opencode/bin:$HOME/.bun/bin:$PATH\"\" && CI=true $HOME/.bun/bin/bun x oh-my-opencode install --yes 2>&1')",
+      "Bash(/bin/bash -c 'export PATH=\"\"$HOME/.opencode/bin:$HOME/.bun/bin:$PATH\"\" && $HOME/.bun/bin/bun x oh-my-opencode install --help 2>&1')",
+      "Bash(/bin/bash -c 'export PATH=\"\"$HOME/.opencode/bin:$HOME/.bun/bin:$PATH\"\" && $HOME/.bun/bin/bun x oh-my-opencode install --no-tui --claude=yes --chatgpt=yes --gemini=yes')",
+      "Bash(/bin/bash -c 'export PATH=\"$HOME/.opencode/bin:$HOME/.bun/bin:$PATH\" && opencode auth --help':*)",
+      "Bash(/bin/bash:*)"
     ],
     "deny": [],
     "ask": []
   },
-  "outputStyle": "Learning"
+  "outputStyle": "Learning",
+  "respectGitignore": true,
+  "language": "korean"
 }
