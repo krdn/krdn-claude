@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-01-08T12:00:00Z",
+  "current_task": null,
+  "agent_status": {
+    "orchestrator": "idle",
+    "ai-manager": "idle",
+    "n8n-manager": "idle",
+    "web-manager": "idle"
+  },
+  "domain_health": {
+    "ai": {
+      "status": "healthy",
+      "last_check": null,
+      "projects_active": 3
+    },
+    "n8n": {
+      "status": "healthy",
+      "last_check": null,
+      "projects_active": 2
+    },
+    "web": {
+      "status": "healthy",
+      "last_check": null,
+      "projects_active": 2
+    }
+  },
+  "statistics": {
+    "total_tasks_completed": 0,
+    "total_tasks_failed": 0,
+    "last_successful_task": null,
+    "uptime_start": "2026-01-08T12:00:00Z"
+  }
+}

@@ -19,5 +19,7 @@
     "example-skills@anthropic-agent-skills": true,
     "hookify@claude-code-plugins": true
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "respectGitignore": true,
+  "language": "korea"
 }

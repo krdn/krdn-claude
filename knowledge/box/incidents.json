@@ -1,0 +1,58 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-01-08T12:00:00Z",
+  "incidents": [],
+  "statistics": {
+    "total_incidents": 0,
+    "by_severity": {
+      "critical": 0,
+      "warning": 0,
+      "info": 0
+    },
+    "by_category": {
+      "disk": 0,
+      "memory": 0,
+      "cpu": 0,
+      "service": 0,
+      "security": 0,
+      "network": 0
+    },
+    "auto_recovered": 0,
+    "manual_resolved": 0,
+    "avg_resolution_time_seconds": 0
+  },
+  "retention_days": 90,
+  "schema": {
+    "incident": {
+      "id": "inc-{YYYYMMDD}-{NNN}",
+      "timestamp": "ISO-8601",
+      "severity": "critical|warning|info",
+      "category": "disk|memory|cpu|service|security|network",
+      "service": "service-name or system",
+      "description": "문제 설명",
+      "metrics": {
+        "value": "현재 값",
+        "threshold": "임계치",
+        "unit": "단위 (%, GB, ms 등)"
+      },
+      "auto_recovered": "boolean",
+      "recovery_action": "수행된 복구 조치",
+      "recovery_output": "복구 명령 출력",
+      "resolved_at": "ISO-8601 or null",
+      "resolution_time_seconds": "number or null",
+      "notified": "boolean",
+      "notification_channel": "email|telegram|log",
+      "related_incidents": ["이전 관련 인시던트 ID"],
+      "notes": "추가 메모"
+    }
+  },
+  "alert_config": {
+    "cooldown_minutes": 15,
+    "escalation_after_minutes": 30,
+    "channels": {
+      "critical": ["email", "telegram"],
+      "warning": ["email"],
+      "info": ["log"]
+    }
+  }
+}

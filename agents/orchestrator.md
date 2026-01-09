@@ -32,10 +32,22 @@ color: gold
    - 통합 보고서 작성
    - 실패 시 롤백 조율
 
-## 프로젝트 맵
+## 데이터 소스
 
-프로젝트 정보는 다음 파일에서 로드합니다:
-- `~/.claude/knowledge/box/projects.json`
+### 프로젝트 맵
+- `~/.claude/knowledge/box/projects.json` - 전체 프로젝트 정보
+
+### 오케스트레이션 상태
+- `~/.claude/orchestration/state.json` - 현재 에이전트 상태
+- `~/.claude/orchestration/queue.json` - 작업 큐
+
+## 도메인 에이전트 파일
+
+| 에이전트 | 파일 경로 |
+|---------|----------|
+| ai-manager | `~/.claude/agents/domain/ai-manager.md` |
+| n8n-manager | `~/.claude/agents/domain/n8n-manager.md` |
+| web-manager | `~/.claude/agents/domain/web-manager.md` |
 
 ## 도메인 에이전트
 
