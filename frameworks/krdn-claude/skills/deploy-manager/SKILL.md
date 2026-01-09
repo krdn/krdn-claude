@@ -179,25 +179,58 @@ npm publish
 
 배포 이력은 다음 파일에 저장됩니다:
 ```
-~/.claude/knowledge/box/deployments.json
+~/.claude/frameworks/krdn-claude/knowledge/box/deployments.json
 ```
+
+### 필수: 배포 완료 시 자동 기록
+
+**배포가 완료되면 반드시 다음 작업을 수행하세요:**
+
+1. **deployments.json 업데이트**
+   - 새 배포 기록 추가
+   - statistics 업데이트
+   - last_updated 갱신
+
+2. **index.json 크로스 참조 업데이트**
+   - by_project 인덱스에 배포 ID 추가
+   - statistics 갱신
+
+### 배포 기록 형식
 
 ```json
 {
-  "deployments": [
-    {
-      "id": "deploy-20260108-001",
-      "project": "ai-note-taking",
-      "environment": "prod",
-      "version": "1.2.4",
-      "previous_version": "1.2.3",
-      "url": "https://...",
-      "status": "success",
-      "deployed_at": "2026-01-08T12:00:00Z",
-      "deployed_by": "claude"
-    }
-  ]
+  "id": "deploy-{YYYYMMDD}-{NNN}",
+  "project": "프로젝트명",
+  "environment": "dev|staging|prod",
+  "version": "새 버전",
+  "previous_version": "이전 버전",
+  "url": "배포 URL",
+  "commit_hash": "git commit SHA",
+  "status": "success|failure|rolled_back",
+  "deployed_at": "ISO-8601",
+  "duration_seconds": 45,
+  "deployed_by": "claude",
+  "related_decisions": ["adr-id"],
+  "related_incidents": []
 }
+```
+
+### 기록 시점
+- **성공 시**: status: "success", 모든 정보 기록
+- **실패 시**: status: "failure", 에러 원인 포함
+- **롤백 시**: status: "rolled_back", 롤백 사유 포함
+
+### 예시 코드
+
+배포 완료 후 JSON 파일을 Read로 읽고, Write로 새 기록을 추가:
+
+```
+1. Read로 deployments.json 읽기
+2. deployments 배열에 새 기록 추가
+3. statistics.total_deployments 증가
+4. statistics.by_status[status] 증가
+5. Write로 저장
+6. index.json의 by_project 업데이트
 ```
 
 ## 연동 시스템

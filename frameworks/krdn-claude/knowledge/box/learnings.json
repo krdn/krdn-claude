@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "last_updated": "2026-01-08T12:00:00Z",
+  "version": "1.1.0",
+  "last_updated": "2026-01-09T12:00:00Z",
   "learnings": [
     {
       "id": "learn-20260108-001",
@@ -12,6 +12,8 @@
       "details": "에이전트 파일에는 name, description, model, color를 frontmatter로 지정. description이 트리거 키워드 역할. model은 opus/sonnet/haiku 중 선택 가능. 본문에 상세 역할 및 지침 작성.",
       "code_example": "---\nname: my-agent\ndescription: 에이전트 설명 및 트리거 키워드\nmodel: sonnet\ncolor: blue\n---\n\n# 에이전트 역할 설명\n...",
       "references": [],
+      "related_decisions": ["adr-001"],
+      "triggered_by_incident": null,
       "tags": ["claude-code", "agent", "configuration"],
       "reusable": true
     },
@@ -25,6 +27,8 @@
       "details": "스킬은 재사용 가능한 작업 정의. SKILL.md에 명령어, 사용법, 프로세스를 상세히 문서화. 스킬 내에 scripts/ 디렉토리로 실행 스크립트 포함 가능.",
       "code_example": "~/.claude/skills/my-skill/\n├── SKILL.md          # 스킬 정의\n├── scripts/          # 실행 스크립트\n│   └── run.sh\n└── config/           # 설정 파일\n    └── settings.json",
       "references": [],
+      "related_decisions": ["adr-001"],
+      "triggered_by_incident": null,
       "tags": ["claude-code", "skill", "configuration"],
       "reusable": true
     },
@@ -38,6 +42,8 @@
       "details": "GitHub Wiki는 {username}/{repo}.wiki.git URL로 클론. 일반 Git 저장소처럼 commit/push로 업데이트. Markdown 파일명이 페이지 제목, [[Page-Name]] 형식으로 링크.",
       "code_example": "git clone https://github.com/user/repo.wiki.git\ncd repo.wiki\n# .md 파일 생성/수정\ngit add -A && git commit -m 'Update wiki' && git push",
       "references": [],
+      "related_decisions": [],
+      "triggered_by_incident": null,
       "tags": ["github", "wiki", "automation"],
       "reusable": true
     },
@@ -51,6 +57,8 @@
       "details": "복잡한 의사결정(orchestration)에는 opus, 일반 작업 수행에는 sonnet, 단순 상태 체크에는 haiku 사용. 에이전트 정의 시 model 필드로 지정.",
       "code_example": "",
       "references": [],
+      "related_decisions": ["adr-002"],
+      "triggered_by_incident": null,
       "tags": ["claude-code", "cost-optimization", "model"],
       "reusable": true
     }
@@ -62,7 +70,8 @@
       "bug": 0,
       "optimization": 1,
       "tool": 2,
-      "concept": 0
+      "concept": 0,
+      "security": 0
     }
   },
   "schema": {
@@ -70,12 +79,14 @@
       "id": "learn-{YYYYMMDD}-{NNN}",
       "topic": "학습 주제",
       "date": "YYYY-MM-DD",
-      "category": "pattern|bug|optimization|tool|concept",
+      "category": "pattern|bug|optimization|tool|concept|security",
       "project": "프로젝트명",
       "summary": "핵심 요약 (1-2문장)",
       "details": "상세 설명",
       "code_example": "코드 예시 (선택)",
       "references": ["참고 링크"],
+      "related_decisions": ["adr-id"],
+      "triggered_by_incident": "inc-id 또는 null",
       "tags": ["태그"],
       "reusable": "boolean - 다른 프로젝트에서 재사용 가능 여부"
     }

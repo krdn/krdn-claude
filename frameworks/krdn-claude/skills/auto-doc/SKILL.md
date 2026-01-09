@@ -15,8 +15,11 @@ description: 자동 문서화 스킬. 코드 변경 시 문서 자동 업데이�
 | `/doc update` | 변경 사항 기반 문서 업데이트 |
 | `/doc adr [title]` | ADR(Architecture Decision Record) 생성 |
 | `/doc learn [topic]` | 학습 내용 기록 |
-| `/doc search [query]` | 지식 저장소 검색 |
+| `/doc search [query]` | 지식 저장소 스마트 검색 |
 | `/doc share [topic]` | 공유 지식으로 등록 |
+| `/doc pr` | GitHub Pull Request 생성 |
+| `/doc dashboard` | 지식 저장소 현황 대시보드 |
+| `/doc handoff` | 인수인계 문서 생성 |
 
 ## 1. 문서 자동 생성
 
@@ -317,9 +320,317 @@ shared/
     └── box/
         ├── decisions.json        # ADR 저장소
         ├── learnings.json        # 학습 내용
+        ├── deployments.json      # 배포 이력
+        ├── incidents.json        # 인시던트 기록
+        ├── index.json            # 크로스 참조 인덱스
         └── shared/               # 공유 지식
             ├── patterns/
             ├── guides/
             ├── troubleshooting/
             └── templates/
+```
+
+---
+
+## 11. Pull Request 생성 (`/doc pr`)
+
+GitHub Pull Request를 자동으로 생성합니다.
+
+### 실행 프로세스
+
+```
+1. 변경사항 분석
+   ├─ git status로 변경된 파일 확인
+   ├─ git diff로 변경 내용 파악
+   └─ 커밋 히스토리 분석
+
+2. PR 내용 생성
+   ├─ 변경 유형 파악 (feat/fix/refactor/docs)
+   ├─ PR 제목 생성 (conventional commit 스타일)
+   └─ PR 본문 작성 (Summary, Changes, Test plan)
+
+3. PR 생성
+   ├─ 브랜치 확인/생성
+   ├─ 변경사항 커밋 (필요 시)
+   ├─ 원격 저장소 push
+   └─ gh pr create 실행
+
+4. 결과 반환
+   └─ PR URL 제공
+```
+
+### PR 본문 템플릿
+
+```markdown
+## Summary
+{변경사항 요약 - 1~3줄}
+
+## Changes
+- {변경 내용 1}
+- {변경 내용 2}
+- {변경 내용 3}
+
+## Test plan
+- [ ] {테스트 항목 1}
+- [ ] {테스트 항목 2}
+
+## Related
+- Closes #{관련 이슈 번호} (있는 경우)
+- Related ADR: {adr-id} (있는 경우)
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+```
+
+### 사용 예시
+
+```bash
+# 현재 브랜치의 변경사항으로 PR 생성
+/doc pr
+
+# 특정 프로젝트에서 PR 생성
+/doc pr ai-note-taking
+
+# 드래프트 PR 생성
+/doc pr --draft
+```
+
+### 자동 연결
+
+- **관련 이슈**: 커밋 메시지나 브랜치 이름에서 이슈 번호 자동 감지
+- **관련 ADR**: decisions.json에서 관련 ADR 찾아 본문에 링크
+- **라벨**: 변경 유형에 따라 자동 라벨 추가 (enhancement, bug, documentation)
+
+---
+
+## 12. 지식 대시보드 (`/doc dashboard`)
+
+지식 저장소의 현황을 한눈에 파악할 수 있는 대시보드를 제공합니다.
+
+### 실행 프로세스
+
+```
+1. 지식 저장소 스캔
+   ├─ decisions.json 로드
+   ├─ learnings.json 로드
+   ├─ deployments.json 로드
+   ├─ incidents.json 로드
+   └─ index.json 로드
+
+2. 통계 계산
+   ├─ 각 저장소별 항목 수
+   ├─ 상태별/카테고리별 분류
+   └─ 최근 활동 추출
+
+3. 연결 상태 분석
+   ├─ 고아 ADR (프로젝트 미연결)
+   ├─ 미해결 인시던트
+   └─ 크로스 참조 현황
+
+4. 대시보드 출력
+```
+
+### 출력 형식
+
+```markdown
+## 📊 지식 저장소 대시보드
+
+### 통계 요약
+| 저장소 | 항목 수 | 최근 추가 |
+|--------|---------|----------|
+| ADR | 2개 | 2026-01-09 |
+| 학습 | 4개 | 2026-01-08 |
+| 배포 | 5개 | 2026-01-09 |
+| 인시던트 | 1개 | 2026-01-07 |
+
+### ADR 상태
+- ✅ Accepted: 2개
+- ⏳ Proposed: 0개
+- ❌ Deprecated: 0개
+
+### 학습 카테고리
+- 🧩 pattern: 1개
+- 🔧 tool: 2개
+- ⚡ optimization: 1개
+
+### 최근 활동 (7일)
+| 날짜 | 유형 | 내용 |
+|------|------|------|
+| 2026-01-09 | ADR | 모델 계층화 전략 결정 |
+| 2026-01-08 | 학습 | GitHub Wiki 자동화 방법 |
+
+### 연결 현황
+- 🔗 프로젝트 연결 ADR: 2/2 (100%)
+- ⚠️ 미해결 인시던트: 0개
+- 📚 재사용 가능 학습: 3개
+
+### 권장 조치
+- 없음 (모든 항목 정상)
+```
+
+---
+
+## 13. 스마트 검색 (`/doc search`)
+
+Claude의 의미 기반 검색으로 관련 지식을 찾습니다.
+
+### 검색 범위
+
+| 저장소 | 검색 필드 |
+|--------|----------|
+| `decisions.json` | title, context, decision, tags, consequences |
+| `learnings.json` | topic, summary, details, tags, code_example |
+| `deployments.json` | project, version, commit_hash |
+| `incidents.json` | description, category, recovery_action |
+| `index.json` | 크로스 참조 관계 |
+
+### 검색 모드
+
+```bash
+# 기본 검색 (모든 저장소)
+/doc search "react hook"
+
+# 카테고리 필터
+/doc search "react hook" --category pattern
+
+# 프로젝트 필터
+/doc search --project ai-note-taking
+
+# 태그 필터
+/doc search --tag performance
+
+# 날짜 범위
+/doc search --since 2026-01-01
+```
+
+### 검색 결과 형식
+
+```markdown
+## 🔍 검색 결과: "react hook"
+
+### ADR 관련 (2건)
+| ID | 제목 | 관련도 |
+|----|------|--------|
+| adr-001 | 트리 구조 에이전트 시스템 | 95% |
+| adr-002 | 모델 계층화 전략 | 72% |
+
+### 학습 기록 (1건)
+| ID | 주제 | 카테고리 | 관련도 |
+|----|------|----------|--------|
+| learn-001 | Claude Code 에이전트 정의 | pattern | 87% |
+
+### 관련 프로젝트
+- claude-code-auto (ADR 2건, 학습 1건)
+- ai-note-taking (학습 1건)
+
+### 추천 문서
+- `shared/patterns/react-hooks.md`
+```
+
+### 관련성 점수 계산
+
+- **직접 매칭**: 제목/주제에 키워드 포함 (100%)
+- **태그 매칭**: 태그에 키워드 포함 (80%)
+- **내용 매칭**: 상세 내용에 키워드 포함 (60%)
+- **연관 매칭**: 크로스 참조된 항목 (40%)
+
+---
+
+## 14. 인수인계 문서 생성 (`/doc handoff`)
+
+프로젝트 또는 현재 작업의 인수인계 문서를 생성합니다.
+
+### 실행 프로세스
+
+```
+1. 컨텍스트 수집
+   ├─ 현재 프로젝트 상태
+   ├─ 진행 중인 작업
+   ├─ 관련 ADR/학습 내용
+   └─ 최근 배포/인시던트
+
+2. 인수인계 문서 생성
+   ├─ 프로젝트 개요
+   ├─ 현재 상태
+   ├─ 주요 결정사항
+   ├─ 알려진 이슈
+   └─ 다음 단계
+
+3. 파일 저장
+   → ~/.claude/handoffs/{project}-{date}.md
+```
+
+### 문서 템플릿
+
+```markdown
+# 인수인계 문서: {프로젝트명}
+
+**생성일**: {YYYY-MM-DD}
+**작성자**: Claude Code
+
+## 프로젝트 개요
+{프로젝트 설명}
+
+## 현재 상태
+- **브랜치**: {현재 브랜치}
+- **최근 배포**: {최근 배포 정보}
+- **빌드 상태**: {빌드 상태}
+
+## 주요 결정사항 (ADR)
+| ID | 제목 | 상태 |
+|----|------|------|
+| adr-001 | {제목} | accepted |
+
+## 진행 중인 작업
+- [ ] {작업 1}
+- [ ] {작업 2}
+
+## 알려진 이슈
+- {이슈 1}
+
+## 학습 내용
+- {관련 학습 1}
+
+## 다음 단계
+1. {권장 다음 단계 1}
+2. {권장 다음 단계 2}
+
+## 참고 자료
+- {관련 문서 링크}
+```
+
+---
+
+## 15. 자동 태깅
+
+학습 내용 저장 시 자동으로 카테고리와 태그를 추천합니다.
+
+### 자동 분류 규칙
+
+| 키워드 패턴 | 추천 카테고리 |
+|-------------|--------------|
+| error, fix, bug, issue | bug |
+| pattern, hook, component | pattern |
+| performance, optimize, fast | optimization |
+| library, tool, package, npm | tool |
+| concept, principle, theory | concept |
+| security, auth, permission | security |
+
+### 자동 태그 추천
+
+```
+내용: "React에서 useMemo를 사용한 메모이제이션으로 리렌더링 최적화"
+
+추천 카테고리: optimization
+추천 태그: ["react", "performance", "memoization", "hooks"]
+```
+
+### 저장 시 확인
+
+```
+학습 내용 저장 전 확인:
+
+카테고리: optimization (자동 추천)
+태그: react, performance, memoization (자동 추천)
+
+[Y] 승인  [E] 수정  [C] 취소
 ```

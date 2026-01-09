@@ -5,9 +5,19 @@
   },
   "permissions": {
     "allow": [
-      "mcp__tavily"
+      "mcp__tavily",
+      "mcp__github"
     ],
     "deny": []
+  },
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
   },
   "statusLine": {
     "type": "command",

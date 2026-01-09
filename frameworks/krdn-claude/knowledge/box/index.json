@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
-  "created_at": "2026-01-08",
-  "description": "Claude Code 중앙 지식 저장소 인덱스",
+  "version": "2.0.0",
+  "last_updated": "2026-01-09T12:00:00Z",
+  "description": "지식 저장소 크로스 참조 인덱스. 모든 엔티티 간 관계를 빠르게 조회.",
   "structure": {
     "box": {
       "description": "핵심 지식 데이터",
@@ -9,26 +9,101 @@
         "projects.json": "프로젝트 맵 및 도메인 정보",
         "decisions.json": "아키텍처 의사결정 기록 (ADR)",
         "learnings.json": "학습 내용 및 인사이트",
-        "incidents.json": "인시던트 로그"
+        "deployments.json": "배포 이력",
+        "incidents.json": "인시던트 로그",
+        "index.json": "크로스 참조 인덱스 (이 파일)"
       }
     },
     "contexts": {
       "description": "세션별 컨텍스트 저장소",
       "format": "{session-id}.json"
-    },
-    "handoffs": {
-      "description": "세션 인수인계 문서",
-      "format": "{timestamp}-summary.md"
     }
   },
-  "related_agents": [
-    "orchestrator",
-    "ai-manager",
-    "n8n-manager",
-    "web-manager"
-  ],
-  "related_skills": [
-    "context-manager",
-    "auto-doc"
-  ]
+  "indexes": {
+    "by_project": {
+      "claude-code-auto": {
+        "decisions": ["adr-001"],
+        "learnings": [],
+        "deployments": [],
+        "incidents": []
+      },
+      "ai-note-taking": {
+        "decisions": ["adr-001"],
+        "learnings": [],
+        "deployments": [],
+        "incidents": []
+      },
+      "docker-n8n": {
+        "decisions": ["adr-001"],
+        "learnings": [],
+        "deployments": [],
+        "incidents": []
+      },
+      "home": {
+        "decisions": ["adr-001"],
+        "learnings": [],
+        "deployments": [],
+        "incidents": []
+      },
+      "home-krdn": {
+        "decisions": [],
+        "learnings": [],
+        "deployments": [],
+        "incidents": []
+      },
+      "gonsai2": {
+        "decisions": [],
+        "learnings": [],
+        "deployments": [],
+        "incidents": []
+      },
+      "news-sentiment-analyzer": {
+        "decisions": [],
+        "learnings": [],
+        "deployments": [],
+        "incidents": []
+      },
+      "krdn-claude": {
+        "decisions": [],
+        "learnings": ["learn-20260108-001", "learn-20260108-002", "learn-20260108-003", "learn-20260108-004"],
+        "deployments": [],
+        "incidents": []
+      }
+    },
+    "by_tag": {
+      "architecture": ["adr-001"],
+      "agent-system": ["adr-001"],
+      "scalability": ["adr-001"],
+      "cost-optimization": ["adr-002", "learn-20260108-004"],
+      "model-selection": ["adr-002"],
+      "claude-code": ["learn-20260108-001", "learn-20260108-002", "learn-20260108-004"],
+      "configuration": ["learn-20260108-001", "learn-20260108-002"],
+      "github": ["learn-20260108-003"],
+      "automation": ["learn-20260108-003"]
+    },
+    "cross_references": {
+      "decision_to_learning": {
+        "adr-001": ["learn-20260108-001", "learn-20260108-002"],
+        "adr-002": ["learn-20260108-004"]
+      },
+      "learning_to_decision": {
+        "learn-20260108-001": ["adr-001"],
+        "learn-20260108-002": ["adr-001"],
+        "learn-20260108-003": [],
+        "learn-20260108-004": ["adr-002"]
+      },
+      "incident_to_learning": {},
+      "deployment_to_incident": {}
+    }
+  },
+  "statistics": {
+    "total_decisions": 2,
+    "total_learnings": 4,
+    "total_deployments": 0,
+    "total_incidents": 0,
+    "orphan_learnings": 1,
+    "projects_with_knowledge": 5
+  },
+  "related_agents": ["orchestrator", "ai-manager", "n8n-manager", "web-manager"],
+  "related_skills": ["context-manager", "auto-doc", "deploy-manager", "system-check"]
 }

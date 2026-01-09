@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "last_updated": "2026-01-08T12:00:00Z",
+  "version": "1.1.0",
+  "last_updated": "2026-01-09T12:00:00Z",
   "decisions": [
     {
       "id": "adr-001",
@@ -33,6 +33,9 @@
         }
       ],
       "related_projects": ["claude-code-auto", "ai-note-taking", "docker-n8n", "home"],
+      "related_learnings": ["learn-20260108-001", "learn-20260108-002"],
+      "related_deployments": [],
+      "related_incidents": [],
       "tags": ["architecture", "agent-system", "scalability"]
     },
     {
@@ -60,6 +63,9 @@
         }
       ],
       "related_projects": [],
+      "related_learnings": ["learn-20260108-004"],
+      "related_deployments": [],
+      "related_incidents": [],
       "tags": ["cost-optimization", "model-selection"]
     }
   ],
@@ -90,6 +96,9 @@
         }
       ],
       "related_projects": ["프로젝트명"],
+      "related_learnings": ["learn-id"],
+      "related_deployments": ["deploy-id"],
+      "related_incidents": ["inc-id"],
       "tags": ["태그"]
     }
   }

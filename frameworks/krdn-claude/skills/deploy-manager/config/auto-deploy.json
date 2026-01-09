@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "description": "Git push 기반 자동 배포 트리거 설정",
+  "enabled": true,
+  "triggers": {
+    "ai-note-taking": {
+      "enabled": true,
+      "branch": "main",
+      "environment": "prod",
+      "pre_checks": ["build", "test"],
+      "auto_rollback": true,
+      "notify_on_success": true,
+      "notify_on_failure": true
+    },
+    "home": {
+      "enabled": true,
+      "branch": "main",
+      "environment": "prod",
+      "pre_checks": ["build"],
+      "auto_rollback": true,
+      "notify_on_success": true,
+      "notify_on_failure": true
+    },
+    "claude-code-auto": {
+      "enabled": false,
+      "branch": "main",
+      "environment": "prod",
+      "pre_checks": ["build", "test", "lint"],
+      "auto_rollback": false,
+      "notify_on_success": true,
+      "notify_on_failure": true,
+      "comment": "npm publish는 수동 배포 권장"
+    },
+    "docker-n8n": {
+      "enabled": false,
+      "branch": "main",
+      "environment": "prod",
+      "pre_checks": ["backup"],
+      "auto_rollback": true,
+      "notify_on_success": true,
+      "notify_on_failure": true,
+      "deploy_window": {
+        "allowed_days": ["saturday", "sunday"],
+        "allowed_hours": [2, 3, 4, 5],
+        "comment": "업무 외 시간에만 자동 배포"
+      }
+    },
+    "news-sentiment-analyzer": {
+      "enabled": false,
+      "branch": "main",
+      "environment": "prod",
+      "pre_checks": ["build"],
+      "auto_rollback": true,
+      "notify_on_success": true,
+      "notify_on_failure": true
+    },
+    "home-krdn": {
+      "enabled": false,
+      "branch": "develop",
+      "environment": "dev",
+      "pre_checks": ["build"],
+      "auto_rollback": false,
+      "notify_on_success": false,
+      "notify_on_failure": true,
+      "comment": "개발 환경만 지원"
+    },
+    "gonsai2": {
+      "enabled": false,
+      "branch": "main",
+      "environment": "prod",
+      "pre_checks": ["build", "test"],
+      "auto_rollback": true,
+      "notify_on_success": true,
+      "notify_on_failure": true
+    }
+  },
+  "health_check": {
+    "enabled": true,
+    "timeout_seconds": 120,
+    "retry_count": 3,
+    "retry_interval_seconds": 10,
+    "endpoints": {
+      "ai-note-taking": "/api/health",
+      "home": "/",
+      "docker-n8n": "/healthz",
+      "news-sentiment-analyzer": "/_stcore/health",
+      "gonsai2": "/health"
+    }
+  },
+  "rollback": {
+    "auto_trigger_conditions": [
+      {
+        "type": "health_check_failure",
+        "consecutive_failures": 3
+      },
+      {
+        "type": "error_rate_spike",
+        "threshold_percent": 500,
+        "window_minutes": 5
+      }
+    ],
+    "max_rollback_versions": 5,
+    "preserve_logs": true
+  },
+  "notifications": {
+    "skill": "notify-important",
+    "channels": ["email"],
+    "include_logs": true,
+    "include_commit_info": true
+  },
+  "watch_method": {
+    "type": "polling",
+    "interval_seconds": 300,
+    "comment": "5분마다 원격 저장소 변경사항 확인. 향후 webhook으로 전환 가능."
+  }
+}

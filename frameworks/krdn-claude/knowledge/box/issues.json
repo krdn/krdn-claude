@@ -1,0 +1,86 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-01-09T18:00:00Z",
+  "issues": [
+    {
+      "id": "issue-20260109-001",
+      "title": "krdn-claude 프레임워크 v2.3.0 개선 작업",
+      "created_at": "2026-01-09T18:00:00Z",
+      "status": "completed",
+      "priority": "high",
+      "type": "enhancement",
+      "description": "krdn-claude 프레임워크의 전반적인 개선 작업. 스킬 통합, 배포 자동화, MCP 통합, 지식 관리 고도화를 포함.",
+      "changes": {
+        "phase_1": {
+          "title": "스킬 통합/간소화 및 지식 저장소 개선",
+          "items": [
+            "interview 스킬을 prompt-assistant에 통합",
+            "context-manager 간소화 (핵심 기능만 유지)",
+            "decisions.json, learnings.json 크로스 참조 스키마 확장",
+            "index.json 크로스 참조 인덱스 생성",
+            "deploy-manager에 배포 기록 로직 추가",
+            "system-check에 인시던트 기록 로직 추가"
+          ]
+        },
+        "phase_2": {
+          "title": "Git 기반 배포 자동화",
+          "items": [
+            "auto-deploy.json - Git push 트리거 설정 생성",
+            "healthcheck.sh - 헬스체크 스크립트 생성"
+          ]
+        },
+        "phase_3": {
+          "title": "MCP GitHub 통합",
+          "items": [
+            "settings.json에 GitHub MCP 서버 등록",
+            "orchestrator.md에 MCP 도구 활용 지침 추가",
+            "auto-doc에 /doc pr 명령어 추가"
+          ]
+        },
+        "phase_4": {
+          "title": "지식 관리 고도화",
+          "items": [
+            "/doc search - 스마트 검색 기능",
+            "/doc dashboard - 지식 대시보드",
+            "/doc handoff - 인수인계 문서 생성",
+            "자동 태깅 시스템"
+          ]
+        }
+      },
+      "files_modified": [
+        "frameworks/krdn-claude/agents/orchestrator.md",
+        "frameworks/krdn-claude/framework.json",
+        "frameworks/krdn-claude/knowledge/box/decisions.json",
+        "frameworks/krdn-claude/knowledge/box/index.json",
+        "frameworks/krdn-claude/knowledge/box/learnings.json",
+        "frameworks/krdn-claude/skills/auto-doc/SKILL.md",
+        "frameworks/krdn-claude/skills/context-manager/SKILL.md",
+        "frameworks/krdn-claude/skills/deploy-manager/SKILL.md",
+        "frameworks/krdn-claude/skills/prompt-assistant/SKILL.md",
+        "frameworks/krdn-claude/skills/system-check/SKILL.md",
+        "settings.json"
+      ],
+      "files_created": [
+        "frameworks/krdn-claude/skills/deploy-manager/config/auto-deploy.json",
+        "frameworks/krdn-claude/skills/deploy-manager/scripts/healthcheck.sh"
+      ],
+      "files_deleted": [
+        "frameworks/krdn-claude/skills/interview/SKILL.md"
+      ],
+      "version_change": {
+        "from": "2.1.0",
+        "to": "2.3.0"
+      },
+      "related_adr": ["adr-001", "adr-002"],
+      "tags": ["framework", "improvement", "automation", "mcp"]
+    }
+  ],
+  "statistics": {
+    "total": 1,
+    "by_status": {
+      "completed": 1,
+      "open": 0,
+      "in_progress": 0
+    }
+  }
+}

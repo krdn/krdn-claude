@@ -251,17 +251,35 @@ auto_renew_ssl() {
 ## 6단계: 인시던트 로그
 
 ### 인시던트 기록 위치
-`~/.claude/knowledge/box/incidents.json`
+`~/.claude/frameworks/krdn-claude/knowledge/box/incidents.json`
+
+### 필수: 문제 감지 시 자동 기록
+
+**문제가 감지되면 반드시 다음 작업을 수행하세요:**
+
+1. **incidents.json 업데이트**
+   - 새 인시던트 기록 추가
+   - severity에 따른 분류 (critical > warning > info)
+   - statistics 업데이트
+   - last_updated 갱신
+
+2. **index.json 크로스 참조 업데이트**
+   - by_project 인덱스에 인시던트 ID 추가 (해당 서비스가 특정 프로젝트에 연결된 경우)
+   - statistics 갱신
+
+3. **관련 학습 연결**
+   - 인시던트 해결 시 새로운 학습이 발생하면 learnings.json에 기록
+   - triggered_by_incident 필드로 연결
 
 ### 인시던트 구조
 
 ```json
 {
-  "id": "inc-20260108-001",
-  "timestamp": "2026-01-08T12:00:00Z",
+  "id": "inc-{YYYYMMDD}-{NNN}",
+  "timestamp": "ISO-8601",
   "severity": "critical|warning|info",
-  "category": "disk|memory|cpu|service|security|network",
-  "service": "docker-n8n|system|nginx",
+  "category": "disk|memory|cpu|service|security|network|swap",
+  "service": "docker-n8n|system|nginx|프로젝트명",
   "description": "문제 설명",
   "metrics": {
     "value": 95,
@@ -270,10 +288,17 @@ auto_renew_ssl() {
   },
   "auto_recovered": true,
   "recovery_action": "수행된 복구 조치",
-  "resolved_at": "2026-01-08T12:05:00Z",
-  "notified": true
+  "resolved_at": "ISO-8601 또는 null",
+  "notified": true,
+  "related_project": "프로젝트명 또는 null",
+  "related_learnings": []
 }
 ```
+
+### 기록 시점
+- **Critical**: 즉시 기록 + notify-important 호출
+- **Warning**: 기록 + 필요시 알림
+- **Info**: 기록만 (통계용)
 
 ### 인시던트 명령어
 
