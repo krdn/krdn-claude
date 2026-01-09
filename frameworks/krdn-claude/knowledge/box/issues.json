@@ -1,7 +1,66 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-01-09T18:00:00Z",
+  "last_updated": "2026-01-09T19:00:00Z",
   "issues": [
+    {
+      "id": "issue-20260109-002",
+      "title": "krdn-claude 프레임워크 리팩토링 검사 및 수정",
+      "created_at": "2026-01-09T19:00:00Z",
+      "status": "completed",
+      "priority": "medium",
+      "type": "refactoring",
+      "description": "프레임워크 리팩토링 검사를 통해 발견된 문제점들을 수정. 일관성, 완전성, 무결성 검증 완료.",
+      "checks_performed": [
+        "코드/스킬 중복 검사",
+        "미사용 파일 검사",
+        "일관성 검사 (네이밍, 구조, 포맷)",
+        "스키마 불일치 검사",
+        "누락된 구현 검사",
+        "크로스 참조 무결성 검사"
+      ],
+      "issues_fixed": [
+        {
+          "issue": "README.md interview 명령어 오류",
+          "fix": "prompt-assistant 스킬로 통합 반영"
+        },
+        {
+          "issue": "index.json related_agents/skills 불완전",
+          "fix": "monitor, code-reviewer, notify-important, port-manager, prompt-assistant 추가"
+        },
+        {
+          "issue": "배포 ID 포맷 불일치",
+          "fix": "deploy-{YYYYMMDD}-{NNN} 포맷으로 통일"
+        },
+        {
+          "issue": "gonsai2 도메인 분류 오류",
+          "fix": "AI → N8N 도메인으로 이동"
+        },
+        {
+          "issue": "SKILL.md 경로 참조 오류",
+          "fix": "~/.claude/frameworks/krdn-claude/skills/ 경로로 수정"
+        }
+      ],
+      "files_modified": [
+        "frameworks/krdn-claude/README.md",
+        "frameworks/krdn-claude/knowledge/box/index.json",
+        "frameworks/krdn-claude/knowledge/box/deployments.json",
+        "frameworks/krdn-claude/knowledge/box/projects.json",
+        "frameworks/krdn-claude/skills/deploy-manager/SKILL.md",
+        "frameworks/krdn-claude/knowledge/box/shared/guides/deployment-checklist.md"
+      ],
+      "final_status": {
+        "all_checks_passed": true,
+        "agents": 6,
+        "skills": 7,
+        "projects": 7,
+        "version": "2.3.0"
+      },
+      "commits": [
+        "f927692 - refactor: krdn-claude 프레임워크 리팩토링 (Quick Wins)",
+        "c2db72b - refactor: gonsai2 도메인 이동 및 경로 참조 수정"
+      ],
+      "tags": ["refactoring", "consistency", "integrity", "cleanup"]
+    },
     {
       "id": "issue-20260109-001",
       "title": "krdn-claude 프레임워크 v2.3.0 개선 작업",
@@ -76,9 +135,9 @@
     }
   ],
   "statistics": {
-    "total": 1,
+    "total": 2,
     "by_status": {
-      "completed": 1,
+      "completed": 2,
       "open": 0,
       "in_progress": 0
     }
