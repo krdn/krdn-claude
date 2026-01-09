@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-01-08T12:00:00Z",
+  "deployments": [],
+  "statistics": {
+    "total_deployments": 0,
+    "successful": 0,
+    "failed": 0,
+    "rollbacks": 0
+  },
+  "schema": {
+    "deployment": {
+      "id": "deploy-{timestamp}",
+      "project": "project-name",
+      "environment": "dev|staging|prod",
+      "version": "version-string",
+      "previous_version": "previous-version",
+      "url": "deployment-url",
+      "status": "success|failure|rolled_back",
+      "deployed_at": "ISO-8601",
+      "deployed_by": "deploy-manager|manual",
+      "duration_seconds": 0,
+      "commit_hash": "git-hash",
+      "notes": "optional notes"
+    }
+  }
+}

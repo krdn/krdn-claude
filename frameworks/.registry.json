@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-01-09T09:57:45Z",
+  "frameworks": {
+    "krdn-claude": {
+      "enabled": true,
+      "priority": 100,
+      "path": "./krdn-claude",
+      "installed_at": "2026-01-09T09:57:45Z",
+      "last_updated": "2026-01-09T09:57:45Z",
+      "version": "2.1.0"
+    }
+  },
+  "active_resources": {
+    "agents": {
+      "sources": ["krdn-claude"],
+      "items": [
+        "orchestrator.md",
+        "monitor.md",
+        "code-reviewer.md",
+        "domain/ai-manager.md",
+        "domain/n8n-manager.md",
+        "domain/web-manager.md"
+      ]
+    },
+    "skills": {
+      "sources": ["krdn-claude"],
+      "items": [
+        "auto-doc",
+        "context-manager",
+        "deploy-manager",
+        "interview",
+        "notify-important",
+        "port-manager",
+        "prompt-assistant",
+        "system-check"
+      ]
+    },
+    "rules": {
+      "sources": ["krdn-claude"],
+      "items": [
+        "korean-response.md",
+        "framework-conventions.md",
+        "security.md"
+      ]
+    },
+    "knowledge": {
+      "sources": ["krdn-claude"],
+      "items": [
+        "box/projects.json",
+        "box/decisions.json",
+        "box/learnings.json"
+      ]
+    }
+  },
+  "conflict_resolution": {
+    "strategy": "priority",
+    "log": []
+  }
+}

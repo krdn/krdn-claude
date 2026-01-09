@@ -28,3 +28,4 @@ plans/
 # 외부 플러그인 마켓플레이스 (서브모듈)
 plugins/marketplaces/anthropic-agent-skills/
 plugins/marketplaces/claude-plugins-official/
+backups/

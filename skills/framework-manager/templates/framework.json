@@ -1,0 +1,36 @@
+{
+  "name": "{{FRAMEWORK_NAME}}",
+  "displayName": "{{DISPLAY_NAME}}",
+  "version": "1.0.0",
+  "description": "{{DESCRIPTION}}",
+  "priority": 100,
+  "components": {
+    "agents": {
+      "enabled": true,
+      "path": "./agents"
+    },
+    "skills": {
+      "enabled": true,
+      "path": "./skills"
+    },
+    "knowledge": {
+      "enabled": true,
+      "path": "./knowledge"
+    },
+    "rules": {
+      "enabled": true,
+      "path": "./rules"
+    },
+    "orchestration": {
+      "enabled": true,
+      "path": "./orchestration"
+    }
+  },
+  "dependencies": [],
+  "metadata": {
+    "author": "{{AUTHOR}}",
+    "repository": "{{REPOSITORY}}",
+    "documentation": "{{DOCUMENTATION}}",
+    "license": "MIT"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-01-08T12:00:00Z",
+  "pending": [],
+  "in_progress": [],
+  "completed": [],
+  "failed": [],
+  "schema": {
+    "task": {
+      "id": "task-{timestamp}-{random}",
+      "type": "build|test|deploy|status|custom",
+      "priority": "critical|high|medium|low",
+      "domain": "ai|n8n|web|all",
+      "project": "project-name or null for domain-wide",
+      "action": "specific action",
+      "params": {},
+      "created_at": "ISO-8601",
+      "started_at": "ISO-8601 or null",
+      "completed_at": "ISO-8601 or null",
+      "result": {
+        "status": "success|warning|failure",
+        "message": "result message",
+        "data": {}
+      }
+    }
+  },
+  "config": {
+    "max_concurrent_tasks": 3,
+    "task_timeout_seconds": 300,
+    "retry_failed_tasks": true,
+    "max_retries": 2
+  }
+}

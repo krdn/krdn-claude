@@ -1,0 +1,65 @@
+{
+  "name": "krdn-claude",
+  "displayName": "KRDN Claude Framework",
+  "version": "2.1.0",
+  "description": "Multi-project orchestration framework for AI, N8N, and Web domains",
+  "priority": 100,
+  "components": {
+    "agents": {
+      "enabled": true,
+      "path": "./agents",
+      "items": ["orchestrator", "monitor", "code-reviewer", "domain/*"]
+    },
+    "skills": {
+      "enabled": true,
+      "path": "./skills",
+      "items": [
+        "auto-doc",
+        "context-manager",
+        "deploy-manager",
+        "interview",
+        "notify-important",
+        "port-manager",
+        "prompt-assistant",
+        "system-check"
+      ]
+    },
+    "knowledge": {
+      "enabled": true,
+      "path": "./knowledge",
+      "items": ["box/projects.json", "box/decisions.json", "box/learnings.json"]
+    },
+    "rules": {
+      "enabled": true,
+      "path": "./rules",
+      "items": ["korean-response.md", "framework-conventions.md", "security.md"]
+    },
+    "orchestration": {
+      "enabled": true,
+      "path": "./orchestration",
+      "items": ["state.json", "queue.json"]
+    }
+  },
+  "aliases": [
+    "크든클로드",
+    "프레임워크",
+    "오케스트레이터"
+  ],
+  "keywords": [
+    "krdn-claude",
+    "크든클로드",
+    "프레임워크",
+    "트리 에이전트",
+    "프로젝트 관리"
+  ],
+  "dependencies": [],
+  "metadata": {
+    "author": "krdn",
+    "repository": "https://github.com/krdn/krdn-claude",
+    "documentation": "https://github.com/krdn/krdn-claude/wiki",
+    "license": "MIT",
+    "cli_version": "2.1.x",
+    "created_at": "2026-01-08T00:00:00Z",
+    "updated_at": "2026-01-09T00:00:00Z"
+  }
+}
