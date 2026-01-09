@@ -29,3 +29,5 @@ plans/
 plugins/marketplaces/anthropic-agent-skills/
 plugins/marketplaces/claude-plugins-official/
 backups/
+wiki/
+settings.local.json

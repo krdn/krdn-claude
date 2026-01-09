@@ -1,0 +1,18 @@
+{
+  "$schema": "https://claude.ai/schemas/settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Read(./**)",
+      "Write(./**)"
+    ],
+    "deny": [
+      "Read(.env*)",
+      "Read(**/secrets/**)"
+    ]
+  },
+  "env": {
+    "PROJECT_TYPE": "web"
+  }
+}
