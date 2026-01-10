@@ -1,7 +1,89 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-01-09T23:30:00Z",
+  "last_updated": "2026-01-10T08:30:00Z",
   "issues": [
+    {
+      "id": "issue-20260110-001",
+      "title": "버전 메타데이터 불일치 분석 및 해결 방안",
+      "created_at": "2026-01-10T08:30:00Z",
+      "status": "open",
+      "priority": "high",
+      "type": "bug",
+      "description": "프레임워크 내 여러 파일에서 버전 정보가 서로 일치하지 않아 혼란을 야기하고 신뢰도를 저하시킴",
+      "analysis": {
+        "current_versions": [
+          {
+            "file": "frameworks/krdn-claude/framework.json",
+            "field": "version",
+            "value": "2.3.0",
+            "status": "✅ 최신 (기준)"
+          },
+          {
+            "file": "frameworks/krdn-claude/framework.json",
+            "field": "cli_version",
+            "value": "2.1.x",
+            "status": "✅ 정상 (호환 범위)"
+          },
+          {
+            "file": "CLAUDE.md",
+            "field": "### krdn-claude (v2.1.0)",
+            "value": "2.1.0",
+            "status": "❌ 낡음 - 2.3.0으로 업데이트 필요"
+          },
+          {
+            "file": "frameworks/.registry.json",
+            "field": "frameworks.krdn-claude.version",
+            "value": "2.1.0",
+            "status": "❌ 낡음 - 2.3.0으로 업데이트 필요"
+          },
+          {
+            "file": "frameworks/krdn-claude/knowledge/box/index.json",
+            "field": "version",
+            "value": "2.0.0",
+            "status": "⚠️ 독립 스키마 버전 (별도 관리)"
+          }
+        ],
+        "root_cause": "버전 업데이트 시 자동 동기화 메커니즘 부재. framework.json만 업데이트되고 다른 파일들은 수동 업데이트가 누락됨",
+        "impact": [
+          "사용자가 실제 버전을 파악하기 어려움",
+          "문서의 신뢰도 저하",
+          ".registry.json 기반 프레임워크 관리 시 잘못된 버전 표시",
+          "업그레이드/마이그레이션 시 혼란 야기"
+        ]
+      },
+      "affected_files": [
+        {
+          "path": "~/.claude/CLAUDE.md",
+          "line": "### krdn-claude (v2.1.0)",
+          "fix": "### krdn-claude (v2.3.0)"
+        },
+        {
+          "path": "~/.claude/frameworks/.registry.json",
+          "field": "frameworks.krdn-claude.version",
+          "current": "2.1.0",
+          "fix": "2.3.0"
+        }
+      ],
+      "solution": {
+        "immediate": [
+          "CLAUDE.md 버전 표기를 2.3.0으로 수정",
+          ".registry.json 버전을 2.3.0으로 수정",
+          "last_updated 타임스탬프 갱신"
+        ],
+        "long_term": [
+          "/framework version 명령 추가 - 모든 파일의 버전 일괄 업데이트",
+          "버전 변경 시 자동 동기화 스크립트 구현",
+          "CI에서 버전 일치 검증 추가"
+        ]
+      },
+      "action_items": [
+        {"priority": 1, "action": "CLAUDE.md 버전 수정 (2.1.0 → 2.3.0)", "difficulty": "easy", "time": "2min"},
+        {"priority": 2, "action": ".registry.json 버전 수정 (2.1.0 → 2.3.0)", "difficulty": "easy", "time": "2min"},
+        {"priority": 3, "action": "/framework version 스킬 추가", "difficulty": "medium", "time": "1h"}
+      ],
+      "related_issues": ["issue-20260109-001"],
+      "tags": ["version", "consistency", "metadata", "documentation"]
+    },
     {
       "id": "issue-20260109-003",
       "title": "krdn-claude 프레임워크 심층 분석 - 문제점 및 개선 제안",
@@ -249,10 +331,10 @@
     }
   ],
   "statistics": {
-    "total": 3,
+    "total": 4,
     "by_status": {
       "completed": 2,
-      "open": 1,
+      "open": 2,
       "in_progress": 0
     }
   }
