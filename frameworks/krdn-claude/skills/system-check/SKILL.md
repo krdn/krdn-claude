@@ -53,15 +53,24 @@ nvidia-smi
 
 ## 2단계: 보안 점검 (병렬 실행)
 
+**주의**: sudo 권한이 없을 때 "미설치"로 오진하지 않도록 설치 여부를 먼저 확인합니다.
+
 ```bash
-# 방화벽 상태
-sudo ufw status
+# 방화벽 상태 (설치 여부 먼저 확인)
+which ufw && sudo ufw status || echo "ufw 미설치"
 
-# fail2ban 상태
-sudo fail2ban-client status sshd
+# fail2ban 설치 여부 확인 (권한 없이 확인 가능)
+dpkg -l fail2ban 2>/dev/null | grep -q "^ii" && echo "fail2ban 설치됨" || echo "fail2ban 미설치"
 
-# SSH 실패 시도 횟수
-cat /var/log/auth.log 2>/dev/null | grep -c "Failed password"
+# fail2ban 서비스 상태 (권한 없이 확인 가능)
+systemctl is-active fail2ban 2>/dev/null || echo "fail2ban 서비스 비활성"
+
+# fail2ban 상세 상태 (sudo 필요 - 권한 있을 때만)
+sudo fail2ban-client status sshd 2>/dev/null || echo "fail2ban 상세 정보: sudo 권한 필요"
+
+# SSH 실패 시도 (journalctl로 대체 - 권한 문제 회피)
+journalctl -u sshd --since "1 hour ago" 2>/dev/null | grep -c "Failed password" || \
+cat /var/log/auth.log 2>/dev/null | grep -c "Failed password" || echo "0"
 
 # 최근 로그인
 last -5

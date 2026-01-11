@@ -34,6 +34,10 @@ docker compose ps              # 컨테이너 상태
 docker compose exec n8n n8n list:workflow  # 워크플로우 목록
 
 # 백업/업데이트 (systemd)
+# TODO(human): sudo 권한 처리 전략을 선택하세요
+# 옵션 1: 권한 확인 후 안내 (sudo 없이 상태만 확인)
+# 옵션 2: passwordless sudo 설정 안내
+# 옵션 3: 사용자에게 비밀번호 요청
 sudo systemctl start n8n-backup   # 수동 백업
 sudo systemctl start n8n-update   # 수동 업데이트
 ```
